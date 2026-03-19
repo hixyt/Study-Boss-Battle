@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Boss Battle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sparkles"></div>
+
+  <!-- HOME SCREEN -->
+  <section id="homeScreen" class="screen active">
+    <div class="hero">
+      <div class="hero-left">
+        <p class="tag">AI Powered Learning Arena</p>
+        <h1>Study Boss Battle</h1>
+        <p class="hero-text">
+          Step into a smart learning arena. Choose your topic, defeat bosses through MCQs, and let AI guide your next move.
+        </p>
+        <button class="primary-btn" onclick="goToTopics()">Start Game</button>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-card">
+          <h3>🎯 Mission</h3>
+          <p>
+            A game-based study system where learning meets strategy. Analyze your performance, improve weak areas, and level up your knowledge.
+          </p>
+          <div class="mini-stats">
+            <span>🤖 Naive Bayes</span>
+            <span>🗺️ A*</span>
+            <span>⚔️ Battle Mode</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPIC SCREEN -->
+  <section id="topicScreen" class="screen">
+    <div class="section-box">
+      <h2>Select Your Topic</h2>
+      <p class="subtext">Choose one topic to enter the study arena.</p>
+
+      <div class="topic-grid">
+        <div class="topic-card" onclick="selectTopic(this, 'A* Algorithm')">
+          <div class="topic-icon">🗺️</div>
+          <h3>A* Algorithm</h3>
+          <p>Smart pathfinding using cost and heuristic.</p>
+        </div>
+
+        <div class="topic-card" onclick="selectTopic(this, 'Hill Climbing')">
+          <div class="topic-icon">⛰️</div>
+          <h3>Hill Climbing</h3>
+          <p>Optimization by choosing better neighboring states.</p>
+        </div>
+
+        <div class="topic-card" onclick="selectTopic(this, 'Naive Bayes')">
+          <div class="topic-icon">🧠</div>
+          <h3>Naive Bayes</h3>
+          <p>Classification based on probability.</p>
+        </div>
+
+        <div class="topic-card" onclick="selectTopic(this, 'Graph Search')">
+          <div class="topic-icon">🕸️</div>
+          <h3>Graph Search</h3>
+          <p>Traversal and exploration of connected nodes.</p>
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <p id="selectedTopicText">Selected Topic: None</p>
+        <button class="primary-btn" onclick="goToBosses()">Continue to Boss Selection</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOSS SCREEN -->
+  <section id="bossScreen" class="screen">
+    <div class="section-box">
+      <h2>Select Your Boss</h2>
+      <p class="subtext">Each boss will test your knowledge in battle mode.</p>
+
+      <div class="boss-grid">
+        <div class="boss-card" onclick="selectBoss(this, 'Quiz Pixie', '🧚')">
+          <div class="boss-emoji">🧚</div>
+          <h3>Quiz Pixie</h3>
+          <p>Starter boss for quick concept battles.</p>
+        </div>
+
+        <div class="boss-card" onclick="selectBoss(this, 'Code Serpent', '🐍')">
+          <div class="boss-emoji">🐍</div>
+          <h3>Code Serpent</h3>
+          <p>Slippery boss with tricky questions.</p>
+        </div>
+
+        <div class="boss-card" onclick="selectBoss(this, 'Logic Beast', '👹')">
+          <div class="boss-emoji">👹</div>
+          <h3>Logic Beast</h3>
+          <p>Attacks weak reasoning instantly.</p>
+        </div>
+
+        <div class="boss-card" onclick="selectBoss(this, 'Exam Titan', '🔥')">
+          <div class="boss-emoji">🔥</div>
+          <h3>Exam Titan</h3>
+          <p>Final boss for brave learners.</p>
+        </div>
+      </div>
+
+      <div class="bottom-actions">
+        <p id="selectedBossText">Selected Boss: None</p>
+        <button class="primary-btn" onclick="startBattle()">Enter Battle Arena</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BATTLE SCREEN -->
+  <section id="battleScreen" class="screen">
+    <div class="battle-header">
+      <div>
+        <h2 id="battleTopicHeading">Battle Topic</h2>
+        <p id="battleBossHeading">Boss: -</p>
+      </div>
+      <div class="question-counter" id="questionCounter">Question 1 / 5</div>
+    </div>
+
+    <div class="arena">
+      <div class="fighter-card player-side">
+        <div class="fighter-label">Player</div>
+        <div class="fighter player-avatar">👩‍🎓</div>
+        <div class="status-pill">Focus Mode</div>
+      </div>
+
+      <div class="battle-center">
+        <div class="question-panel">
+          <h3 id="questionText">Question appears here</h3>
+          <div id="optionsBox" class="options-box"></div>
+          <p id="answerMessage" class="answer-message">Choose the correct answer to attack smartly.</p>
+          <button id="nextBtn" class="primary-btn hidden-btn" onclick="nextQuestion()">Next Question</button>
+        </div>
+      </div>
+
+      <div class="fighter-card boss-side">
+        <div class="fighter-label">Boss</div>
+        <div id="monster" class="fighter monster-avatar">🧚</div>
+        <div id="monsterStatus" class="status-pill danger">Normal Size</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT SCREEN -->
+  <section id="resultScreen" class="screen">
+    <div class="section-box result-layout">
+      <h2 id="finalTitle">Battle Result</h2>
+
+      <div class="result-grid">
+        <div id="outcomeCard" class="result-card">
+          <h3>🏆 Outcome</h3>
+          <p id="finalOutcome">-</p>
+          <p id="finalScore">-</p>
+          <p id="finalTopic">-</p>
+          <p id="finalBoss">-</p>
+        </div>
+
+        <div class="result-card">
+          <h3>🤖 AI Analysis</h3>
+          <p id="learnerType">Learner Type: -</p>
+          <p id="performanceText">Performance: -</p>
+          <p id="studyPath">Recommended Path: -</p>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <button class="primary-btn" onclick="restartGame()">Play Again</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
