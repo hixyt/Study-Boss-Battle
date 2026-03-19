@@ -68,13 +68,11 @@ To make learning **interactive, engaging, and fun** using AI-based gamification 
 ## 👩‍💻 Developed By
 
 - Himani  
-- Your Friend Name  
 
 ---
 
 ## ⭐ Future Improvements
 
-- 🔊 Sound effects  
 - 💥 Animations  
 - 📊 Advanced AI analysis  
 - 🏆 Leaderboard system  
