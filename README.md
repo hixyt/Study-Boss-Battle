@@ -67,7 +67,7 @@ To make learning **interactive, engaging, and fun** using AI-based gamification 
 
 ## 👩‍💻 Developed By
 
-- Himani  
+- Himani Dalvi & Dhanishtha Deshpande
 
 ---
 
